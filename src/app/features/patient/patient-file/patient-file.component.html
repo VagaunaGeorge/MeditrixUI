@@ -1,0 +1,600 @@
+<div class="accordion" id="accordionExample">
+  <div class="card">
+    <div class="card-header" id="headingOne">
+      <h2 class="mb-0">
+        <button
+          class="btn btn-link btn-block text-left"
+          type="button"
+          data-toggle="collapse"
+          data-target="#collapseOne"
+          aria-expanded="true"
+          aria-controls="collapseOne"
+        >
+          Fișă pacient
+        </button>
+      </h2>
+    </div>
+
+    <div
+      id="collapseOne"
+      class="collapse show"
+      aria-labelledby="headingOne"
+      data-parent="#accordionExample"
+    >
+      <div class="card-body">
+        <form
+          class="mt-3 col-md-8"
+          *ngIf="patient"
+          (ngSubmit)="onSave()"
+          [formGroup]="patientFileForm"
+        >
+          <!-- <div class="form-group row">
+                <label for="inputEmail3" class="col-sm-2 col-form-label form-control-sm">Email</label>
+                <div class="col-sm-10">
+                  <input type="email" class="form-control form-control-sm" id="inputEmail3" placeholder="Email">
+                </div>
+              </div> -->
+
+          <div class="form-row">
+            <label class="col-md-2 col-form-label form-control-sm">Email</label>
+            <div class="form-group col-md-10">
+              <input
+                type="text"
+                class="form-control form-control-sm"
+                placeholder="Email"
+                formControlName="email"
+                [class]="isValidField('email')"
+                #email
+                [readonly]="true"
+              />
+              <div class="invalid-feedback">
+                <span *ngIf="patientFileForm.get('email').errors?.required">
+                  Câmpul este obligatoriu!
+                </span>
+                <span *ngIf="patientFileForm.get('email').errors?.pattern">
+                  Introduceți un email valid!
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <label class="col-md-2 col-form-label form-control-sm">Nume</label>
+            <div class="form-group col-md-10">
+              <input
+                type="text"
+                class="form-control form-control-sm"
+                placeholder="Nume"
+                formControlName="lastName"
+                [class]="isValidField('lastName')"
+                #lastName
+              />
+              <div class="invalid-feedback">
+                <span *ngIf="patientFileForm.get('lastName').errors?.required">
+                  Câmpul este obligatoriu!
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <label class="col-md-2 col-form-label form-control-sm"
+              >Prenume</label
+            >
+            <div class="form-group col-md-10">
+              <input
+                type="text"
+                class="form-control form-control-sm"
+                placeholder="Prenume"
+                formControlName="firstName"
+                [class]="isValidField('firstName')"
+                #firstName
+              />
+              <div class="invalid-feedback">
+                <span *ngIf="patientFileForm.get('firstName').errors?.required">
+                  Câmpul este obligatoriu!
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <label class="col-md-2 col-form-label form-control-sm"
+              >Varsta</label
+            >
+            <div class="form-group col-md-10">
+              <input
+                type="number"
+                class="form-control form-control-sm"
+                placeholder="Varsta"
+                formControlName="age"
+                [class]="isValidField('age')"
+                #Age
+              />
+              <div class="invalid-feedback">
+                <span *ngIf="patientFileForm.get('age').errors?.required">
+                  Câmpul este obligatoriu!
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <label class="col-md-2 col-form-label form-control-sm">CNP</label>
+            <div class="form-group col-md-10">
+              <input
+                type="text"
+                class="form-control form-control-sm"
+                placeholder="CNP"
+                formControlName="CNP"
+                [class]="isValidField('CNP')"
+                #CNP
+              />
+              <div class="invalid-feedback">
+                <span *ngIf="patientFileForm.get('CNP').errors?.required">
+                  Câmpul este obligatoriu!
+                </span>
+                <span *ngIf="patientFileForm.get('CNP').errors?.pattern">
+                  CNP invalid!
+                </span>
+                <span *ngIf="patientFileForm.get('CNP').errors?.minlength || patientFileForm.get('CNP').errors?.maxlength">
+                  Lungime CNP invalida!
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <label class="col-md-2 col-form-label form-control-sm"
+              >Adresa</label
+            >
+            <div class="form-group col-md-10">
+              <input
+                type="text"
+                class="form-control form-control-sm"
+                placeholder="Adresa"
+                formControlName="address"
+                [class]="isValidField('address')"
+                #address
+              />
+              <div class="invalid-feedback">
+                <span *ngIf="patientFileForm.get('address').errors?.required">
+                  Câmpul este obligatoriu!
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <label class="col-md-2 col-form-label form-control-sm"
+              >Telefon</label
+            >
+            <div class="form-group col-md-10">
+              <input
+                type="text"
+                class="form-control form-control-sm"
+                placeholder="Telefon"
+                formControlName="phoneNumber"
+                [class]="isValidField('phoneNumber')"
+                #phoneNumber
+              />
+              <div class="invalid-feedback">
+                <span
+                  *ngIf="patientFileForm.get('phoneNumber').errors?.required"
+                >
+                  Câmpul este obligatoriu!
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <label class="col-md-2 col-form-label form-control-sm"
+              >Profesie</label
+            >
+            <div class="form-group col-md-10">
+              <input
+                type="text"
+                class="form-control form-control-sm"
+                placeholder="Profesie"
+                formControlName="profession"
+                [class]="isValidField('profession')"
+                #profession
+              />
+              <div class="invalid-feedback">
+                <span
+                  *ngIf="patientFileForm.get('profession').errors?.required"
+                >
+                  Câmpul este obligatoriu!
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <label class="col-md-2 col-form-label form-control-sm"
+              >Loc de munca</label
+            >
+            <div class="form-group col-md-10">
+              <input
+                type="text"
+                class="form-control form-control-sm"
+                placeholder="Loc de munca"
+                formControlName="placeForWork"
+                [class]="isValidField('placeForWork')"
+                #placeForWork
+              />
+              <div class="invalid-feedback">
+                <span
+                  *ngIf="patientFileForm.get('placeForWork').errors?.required"
+                >
+                  Câmpul este obligatoriu!
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <label class="col-md-2 col-form-label form-control-sm"
+              >Istoric medical</label
+            >
+            <div class="form-group col-md-10">
+              <textarea
+                class="form-control form-control-sm"
+                placeholder="Istoric medical"
+                formControlName="medicalHistory"
+                [class]="isValidField('medicalHistory')"
+                #medicalHistory
+              >
+              </textarea>
+              <div class="invalid-feedback">
+                <span
+                  *ngIf="patientFileForm.get('medicalHistory').errors?.required"
+                >
+                  Câmpul este obligatoriu!
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <label class="col-md-2 col-form-label form-control-sm"
+              >Alergii</label
+            >
+            <div class="form-group col-md-10">
+              <textarea
+                class="form-control form-control-sm"
+                placeholder="Alergii"
+                formControlName="allergies"
+                [class]="isValidField('allergies')"
+                #allergies
+              >
+              </textarea>
+              <div class="invalid-feedback">
+                <span *ngIf="patientFileForm.get('allergies').errors?.required">
+                  Câmpul este obligatoriu!
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <label class="col-md-2 col-form-label form-control-sm"
+              >Consultatii cardiologice</label
+            >
+            <div class="form-group col-md-10">
+              <textarea
+                class="form-control form-control-sm"
+                placeholder="Consultatii cardiologice"
+                formControlName="cardiologicalConsultations"
+                [class]="isValidField('cardiologicalConsultations')"
+                #cardiologicalConsultations
+              >
+              </textarea>
+              <div class="invalid-feedback">
+                <span
+                  *ngIf="
+                    patientFileForm.get('cardiologicalConsultations').errors
+                      ?.required
+                  "
+                >
+                  Câmpul este obligatoriu!
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row" style="margin-top: 20px">
+            <button
+              class="btn btn-success full-width"
+              (click)="onSave()"
+              [disabled]="patientFileForm.invalid"
+            >
+              Salveaza
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" id="headingTwo">
+      <h2 class="mb-0">
+        <button
+          class="btn btn-link btn-block text-left collapsed"
+          type="button"
+          data-toggle="collapse"
+          data-target="#collapseTwo"
+          aria-expanded="false"
+          aria-controls="collapseTwo"
+        >
+          Recomandări
+        </button>
+      </h2>
+    </div>
+    <div
+      id="collapseTwo"
+      class="collapse"
+      aria-labelledby="headingTwo"
+      data-parent="#accordionExample"
+    >
+      <div class="card-body">
+        <form
+          class="mt-3 col-md-8"
+          *ngIf="patient"
+          (ngSubmit)="onSaveRecom()"
+          [formGroup]="recomForm"
+        >
+          <div class="form-row">
+            <label class="col-md-2 col-form-label form-control-sm"
+              >Activitate</label
+            >
+            <div class="form-group col-md-10">
+              <input
+                type="text"
+                class="form-control form-control-sm"
+                placeholder="Activitate"
+                formControlName="tipActivitate"
+                #tipActivitate
+              />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <label class="col-md-2 col-form-label form-control-sm"
+              >Durată</label
+            >
+            <div class="form-group col-md-10">
+              <input
+                type="text"
+                class="form-control form-control-sm"
+                placeholder="Durata"
+                formControlName="durata"
+                #Durata
+              />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <label class="col-md-2 col-form-label form-control-sm"
+              >Frecvență</label
+            >
+            <div class="form-group col-md-10">
+              <input
+                type="text"
+                class="form-control form-control-sm"
+                placeholder="Frecvență"
+                formControlName="frecventa"
+                #Frecventa
+              />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <label class="col-md-2 col-form-label form-control-sm"
+              >Indicații</label
+            >
+            <div class="form-group col-md-10">
+              <input
+                type="text"
+                class="form-control form-control-sm"
+                placeholder="Indicații"
+                formControlName="indicatii"
+                #indicatii
+              />
+            </div>
+          </div>
+
+          <div class="form-row" style="margin-top: 20px">
+            <button
+              class="btn btn-success full-width"
+              (click)="onSaveRecom()"
+              [disabled]="patientFileForm.invalid"
+            >
+              Salveaza
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" id="headingThree">
+      <h2 class="mb-0">
+        <button
+          class="btn btn-link btn-block text-left collapsed"
+          type="button"
+          data-toggle="collapse"
+          data-target="#collapseThree"
+          aria-expanded="false"
+          aria-controls="collapseThree"
+        >
+          Limite parametri
+        </button>
+      </h2>
+    </div>
+    <div
+      id="collapseThree"
+      class="collapse"
+      aria-labelledby="headingThree"
+      data-parent="#accordionExample"
+    >
+      <div class="card-body">
+        <form
+          class="mt-3 col-md-8"
+          *ngIf="patient"
+          (ngSubmit)="onSaveRecom()"
+          [formGroup]="recomForm"
+        >
+          <label><b>Puls</b></label>
+          <div class="form-row">
+            <label class="col-md-2 col-form-label form-control-sm"
+              >Minim
+            </label>
+            <div class="form-group col-md-10">
+              <input
+                type="text"
+                class="form-control form-control-sm"
+                placeholder=""
+                formControlName="tipActivitate"
+                #tipActivitate
+              />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <label class="col-md-2 col-form-label form-control-sm">Maxim</label>
+            <div class="form-group col-md-10">
+              <input
+                type="text"
+                class="form-control form-control-sm"
+                placeholder=""
+                formControlName="durata"
+                #Durata
+              />
+            </div>
+          </div>
+          <br />
+          <label><b>ECG</b></label>
+          <div class="form-row">
+            <label class="col-md-2 col-form-label form-control-sm"
+              >Minim
+            </label>
+            <div class="form-group col-md-10">
+              <input
+                type="text"
+                class="form-control form-control-sm"
+                placeholder=""
+                formControlName="tipActivitate"
+                #tipActivitate
+              />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <label class="col-md-2 col-form-label form-control-sm">Maxim</label>
+            <div class="form-group col-md-10">
+              <input
+                type="text"
+                class="form-control form-control-sm"
+                placeholder=""
+                formControlName="durata"
+                #Durata
+              />
+            </div>
+          </div>
+          <br />
+          <label><b>Temperatură</b></label>
+
+          <div class="form-row">
+            <label class="col-md-2 col-form-label form-control-sm"
+              >Minim
+            </label>
+            <div class="form-group col-md-10">
+              <input
+                type="text"
+                class="form-control form-control-sm"
+                placeholder=""
+                formControlName="tipActivitate"
+                #tipActivitate
+              />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <label class="col-md-2 col-form-label form-control-sm">Maxim</label>
+            <div class="form-group col-md-10">
+              <input
+                type="text"
+                class="form-control form-control-sm"
+                placeholder=""
+                formControlName="durata"
+                #Durata
+              />
+            </div>
+          </div>
+          <br />
+          <label><b>Umiditate</b></label>
+
+          <div class="form-row">
+            <label class="col-md-2 col-form-label form-control-sm"
+              >Minim
+            </label>
+            <div class="form-group col-md-10">
+              <input
+                type="text"
+                class="form-control form-control-sm"
+                placeholder=""
+                formControlName="tipActivitate"
+                #tipActivitate
+              />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <label class="col-md-2 col-form-label form-control-sm">Maxim</label>
+            <div class="form-group col-md-10">
+              <input
+                type="text"
+                class="form-control form-control-sm"
+                placeholder=""
+                formControlName="durata"
+                #Durata
+              />
+            </div>
+          </div>
+
+          <div class="form-row" style="margin-top: 20px">
+            <button
+              class="btn btn-success full-width"
+              (click)="onSaveRecom()"
+              [disabled]="patientFileForm.invalid"
+            >
+              Salveaza
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<br /><br />
+
+<button
+  class="btn bg-dark btn-block text-light"
+  type="submit"
+  (click)="onClickRaportsButton()"
+>
+  Vizualizeaza rapoarte
+</button>
+
+<br />
+
+<button
+  class="btn bg-dark btn-block text-light"
+  type="submit"
+  (click)="onClickGraphicsButton()"
+>
+  Vizualizează grafice parametri pacient
+</button>

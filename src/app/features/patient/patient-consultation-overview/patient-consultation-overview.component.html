@@ -1,0 +1,34 @@
+<div class="container">
+  <div class="row">
+    <button class="btn btn-success" (click)="onGoToCreate()">
+      Adaugare consultatie noua
+    </button>
+  </div>
+</div>
+
+<div class="table-responsive mt-2" *ngIf="consultations.length > 0">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Motiv</th>
+        <th scope="col">Simptome</th>
+        <th scope="col">Diagnostic</th>
+        <th scope="col">Actiuni</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let consult of consultations; index as i">
+        <th scope="row">{{ i + 1 }}</th>
+        <td>{{ consult.reason }}</td>
+        <td>{{ consult.symptoms }}</td>
+        <td>{{ getDiagText(consult.diagnosis) }}</td>
+        <td>
+          <button class="btn btn-info" (click)="onGoToDetails(consult)">
+            Vizualizare
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

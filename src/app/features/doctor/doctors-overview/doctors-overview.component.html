@@ -1,0 +1,24 @@
+<div class="table-responsive">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <!--        <th scope="col">Name</th>-->
+                <th scope="col">Email</th>
+                <th scope="col">Parolă</th>
+                <th class="d-none d-sm-block" scope="col">Acțiuni</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="table" *ngFor="let item of doctors$ | async">
+                <!--        <th scope="row">{{ item.name}} {{item.lastName}}</th>-->
+                <td>{{item.email}}</td>
+                <td>{{item.password}}</td>
+                <td class="bnt-group d-none d-sm-block" role="group">
+                    <button type="button" class="btn btn-primary" (click)="onGoToEdit(item)">Editare</button> |
+                    <button type="button" class="btn btn-warning" (click)="onGoToSee(item)">Vizualizare</button> |
+                    <button type="button" class="btn btn-danger" (click)="onGoToDelete(item.id)">Ștergere</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

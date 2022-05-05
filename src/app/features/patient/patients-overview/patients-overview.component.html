@@ -1,0 +1,31 @@
+<div class="table-responsive">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Email</th>
+                <th scope="col">Nume</th>
+                <th scope="col">Prenume</th>
+                <th scope="col" *ngIf="showPasswordColumn">Parolă</th>
+                <th scope="col">Doctor</th>
+                <th class="d-none d-sm-block" scope="col">Acțiuni</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="table" *ngFor="let item of patients">
+                <td>{{item.email}}</td>
+                <td>{{item.firstName}}</td>
+                <td>{{item.lastName}}</td>
+                <td *ngIf="showPasswordColumn">{{item.password}}</td>
+                <td>{{getDoctorEmail(doctors$ | async, item.doctorID)}}</td>
+                <td class="bnt-group d-none d-sm-block" role="group">
+                    <button type="button" class="btn btn-success" (click)="onGoToAddFile(item)">Fisa</button> |
+                    <button type="button" class="btn btn-primary" (click)="onGoToEdit(item)">Editare</button> |
+                    <button type="button" class="btn btn-warning"
+                        (click)="onGoToConsultations(item)">Consultatii</button> |
+                    <button type="button" class="btn btn-danger" (click)="onGoToDelete(item.id)">Ștergere</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>

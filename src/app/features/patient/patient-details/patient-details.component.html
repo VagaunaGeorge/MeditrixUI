@@ -1,0 +1,239 @@
+<div class="accordion" id="accordionExample">
+  <div class="card">
+    <div class="card-header" id="headingOne">
+      <h2 class="mb-0">
+        <button
+          class="btn btn-link btn-block text-left"
+          type="button"
+          data-toggle="collapse"
+          data-target="#collapseOne"
+          aria-expanded="true"
+          aria-controls="collapseOne"
+        >
+          Fișă pacient
+        </button>
+      </h2>
+    </div>
+
+    <div
+      id="collapseOne"
+      class="collapse show"
+      aria-labelledby="headingOne"
+      data-parent="#accordionExample"
+    >
+      <div class="card-body">
+        <div>
+          <div class="form-group row">
+            <label for="CNP" class="col-sm-2 col-form-label">CNP</label>
+            <div class="col-sm-10">
+              <input
+                type="text"
+                readonly
+                class="form-control form-control-plaintext"
+                id="CNP"
+                value="{{ patientFile.CNP }}"
+              />
+            </div>
+
+            <label for="Nume" class="col-sm-2 col-form-label">Nume</label>
+            <div class="col-sm-10">
+              <input
+                type="text"
+                readonly
+                class="form-control form-control-plaintext"
+                id="CNP"
+                value="{{ patientFile.firstName }}"
+              />
+            </div>
+
+            <label for="Prenume" class="col-sm-2 col-form-label">Prenume</label>
+            <div class="col-sm-10">
+              <input
+                type="text"
+                readonly
+                class="form-control form-control-plaintext"
+                id="CNP"
+                value="{{ patientFile.lastname }}"
+              />
+            </div>
+
+            <label for="Varsta" class="col-sm-2 col-form-label">Varsta</label>
+            <div class="col-sm-10">
+              <input
+                type="text"
+                readonly
+                class="form-control form-control-plaintext"
+                id="CNP"
+                value="{{ patientFile.age }}"
+              />
+            </div>
+
+            <label for="Address" class="col-sm-2 col-form-label">Adresa</label>
+            <div class="col-sm-10">
+              <input
+                type="text"
+                readonly
+                class="form-control form-control-plaintext"
+                id="CNP"
+                value="{{ patientFile.address }}"
+              />
+            </div>
+
+            <label for="Address" class="col-sm-2 col-form-label"
+              >Numar de telefon</label
+            >
+            <div class="col-sm-10">
+              <input
+                type="text"
+                readonly
+                class="form-control form-control-plaintext"
+                id="CNP"
+                value="{{ patientFile.phoneNumber }}"
+              />
+            </div>
+
+            <label for="Address" class="col-sm-2 col-form-label"
+              >Loc de munca</label
+            >
+            <div class="col-sm-10">
+              <input
+                type="text"
+                readonly
+                class="form-control form-control-plaintext"
+                id="CNP"
+                value="{{ patientFile.placeForWork }}"
+              />
+            </div>
+
+            <label for="Address" class="col-sm-2 col-form-label">Alergii</label>
+            <div class="col-sm-10">
+              <input
+                type="text"
+                readonly
+                class="form-control form-control-plaintext"
+                id="CNP"
+                value="{{ patientFile.allergies }}"
+              />
+            </div>
+
+            <label for="Address" class="col-sm-2 col-form-label"
+              >Consultatii cardiologice</label
+            >
+            <div class="col-sm-10">
+              <input
+                type="text"
+                readonly
+                class="form-control form-control-plaintext"
+                id="CNP"
+                value="{{ patientFile.cardiologicalConsultations }}"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" id="headingTwo">
+      <h2 class="mb-0">
+        <button
+          class="btn btn-link btn-block text-left collapsed"
+          type="button"
+          data-toggle="collapse"
+          data-target="#collapseTwo"
+          aria-expanded="false"
+          aria-controls="collapseTwo"
+        >
+          Istoric alarme
+        </button>
+      </h2>
+    </div>
+    <div
+      id="collapseTwo"
+      class="collapse"
+      aria-labelledby="headingTwo"
+      data-parent="#accordionExample"
+    >
+      <div class="card-body">
+        <div class="table-responsive">
+          <div class="card">
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <!--        <th scope="col">Name</th>-->
+                  <th scope="col">Data</th>
+                  <th scope="col">Parametru</th>
+                  <th scope="col">Detalii</th>
+                  <th scope="col">Valoare depășită</th>
+                  <th scope="col">Valoare minimă normală</th>
+                  <th scope="col">Valoare maximă normală</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="table" *ngFor="let item of alarmsList">
+                  <!--        <th scope="row">{{ item.name}} {{item.lastName}}</th>-->
+                  <td>15/05/2021 13:00:00</td>
+                  <td>{{ item.parametru }}</td>
+                  <td>{{ item.text }}</td>
+                  <td>{{ item.valActuala }}</td>
+                  <td>{{ item.valMaxima }}</td>
+                  <td>{{ item.valMinima }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" id="headingThree">
+      <h2 class="mb-0">
+        <button
+          class="btn btn-link btn-block text-left collapsed"
+          type="button"
+          data-toggle="collapse"
+          data-target="#collapseThree"
+          aria-expanded="false"
+          aria-controls="collapseThree"
+        >
+          Recomandările doctorului
+        </button>
+      </h2>
+    </div>
+    <div
+      id="collapseThree"
+      class="collapse"
+      aria-labelledby="headingThree"
+      data-parent="#accordionExample"
+    >
+      <div class="card-body">
+        <div class="table-responsive">
+          <div class="card" style="width: 58rem">
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th scope="col">Activitate</th>
+                  <th scope="col">Indicatii</th>
+                  <th scope="col">Frecvență</th>
+                  <th scope="col">Durată</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="table" *ngFor="let item of recomandationsList">
+                  <!--        <th scope="row">{{ item.name}} {{item.lastName}}</th>-->
+                  <td>{{ item.tipActivitate }}</td>
+                  <td>{{ item.indicatii }}</td>
+                  <td>{{ item.durata }}</td>
+                  <td>{{ item.frecventa }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
